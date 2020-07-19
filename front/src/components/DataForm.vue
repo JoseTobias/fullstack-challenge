@@ -1,17 +1,32 @@
 <template>
-  <form @submit.prevent="submit">
-    <input v-model="firstName" @blur="checkFirstName" type="text" name="firstName" value>
+  <div class="top">
+    <div class="container">
+      <form @submit.prevent="submit">
+        <div class="first-name">
+          <input :class="{error: error.firstName}" v-model="firstName" @blur="checkFirstName" type="text" name="firstName" value>
+          <span v-if="error.firstName">{{ error.firstName }}</span>
+        </div>
 
-    <input v-model="lastName" @blur="checkLastName" type="text" name="lastName" value>
 
-    <input v-model="participation" @blur="checkParticipation" type="number" name="participation" value>
+        <div class="last-name">
+          <input :class="{error: error.lastName}" v-model="lastName" @blur="checkLastName" type="text" name="lastName" value>
+          <span v-if="error.lastName">{{ error.lastName }}</span>
+        </div>
 
-    <button type="submit" name="button">
-      SEND
-    </button>
+        <div class="participation">
+          <input :class="{error: error.participation}" v-model="participation" @blur="checkParticipation" type="number" name="participation" value>
+          <span v-if="error.participation">{{ error.participation }}</span>
+        </div>
 
-    <p v-if="!errorIsEmpty">{{ error }}</p>
-  </form>
+        <div class="submit">
+          <button type="submit" name="button">
+            SEND
+          </button>
+        </div>
+        <!-- <p v-if="!errorIsEmpty">{{ error }}</p> -->
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -36,7 +51,7 @@ export default {
     },
     checkParticipation() {
       if(this.participation > 100 || this.participation < 0 || this.participation == 0) {
-        this.$set(this.error, 'participation', 'participation should be in percentage')
+        this.$set(this.error, 'participation', 'Participation should be in percentage.')
       }
       else {
         if(this.error.participation){
@@ -46,7 +61,7 @@ export default {
     },
     checkFirstName() {
       if(this.firstName === '') {
-        this.$set(this.error, 'firstName', 'participation should be a name')
+        this.$set(this.error, 'firstName', 'Participation should be a name.')
       }
       else {
         this.$delete(this.error, 'firstName')
@@ -54,7 +69,7 @@ export default {
     },
     checkLastName() {
       if(this.lastName === '') {
-        this.$set(this.error, 'lastName', 'participation should be a last name')
+        this.$set(this.error, 'lastName', 'Participation should be a last name.')
       }
       else {
         this.$delete(this.error, 'lastName')
@@ -74,18 +89,66 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.top {
+  background-color: #48B9E7;
+  padding: 30px;
+  form {
+    display: flex;
+    justify-content: center;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+    .first-name {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin-right: 20px;
+      @media (max-width: 767px) {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+    .last-name {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin-right: 20px;
+      @media (max-width: 767px) {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+    .participation {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin-right: 20px;
+      @media (max-width: 767px) {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+    input {
+      height: 40px;
+      padding: 0 10px;
+      outline-color: transparent;
+      &.error:not(:focus) {
+        border: solid red 1px;
+      }
+    }
+    button {
+      background: transparent;
+      border: solid #fff 2px;
+      padding: 10px 30px;
+      color: #fff;
+      font-weight: bold;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    span {
+      color: #fff;
+    }
+  }
 }
 </style>
