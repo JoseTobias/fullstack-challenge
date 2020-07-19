@@ -27,13 +27,13 @@ export default {
   },
   methods: {
     submit() {
-
+      this.checkFields()
     },
     number(event) {
       this.participation += event.key.replace(/[^\d]/g, "")
     },
     checkParticipation() {
-      if(this.participation > 100 || this.participation < 0) {
+      if(this.participation > 100 || this.participation < 0 || this.participation == 0) {
         this.$set(this.error, 'participation', 'participation should be in percentage')
       }
       else {
@@ -41,6 +41,16 @@ export default {
           this.$delete(this.error, 'participation')
         }
       }
+    },
+    checkFields() {
+      if(this.firstName === '') {
+        this.$set(this.error, 'firstName', 'participation should be a name')
+      }
+
+      if(this.lastName === '') {
+        this.$set(this.error, 'lastName', 'participation should be a last name')
+      }
+      this.checkParticipation()
     }
   },
   computed: {
