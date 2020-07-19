@@ -1,16 +1,38 @@
 <template>
   <div id="app">
     <data-form />
+    <div class="app-body container">
+      <h2>Data</h2>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+      <data-container :itens="persons" />
+    </div>
   </div>
 </template>
 
 <script>
 import DataForm from './components/DataForm.vue'
+import DataContainer from './components/DataContainer.vue'
 
 export default {
   name: 'App',
   components: {
-    DataForm
+    DataForm,
+    DataContainer,
+  },
+  data() {
+    return {
+      persons: []
+    }
+  },
+  methods: {
+    getPersons() {
+      fetch('http://localhost:3030/')
+        .then(resp => resp.json())
+        .then(resp => {this.persons = resp})
+    }
+  },
+  mounted() {
+    this.getPersons()
   }
 }
 </script>
@@ -53,11 +75,15 @@ body {
   }
 }
 
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  .app-body {
+    margin-top: 30px;
+  }
 }
 </style>

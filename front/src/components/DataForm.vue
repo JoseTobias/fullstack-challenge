@@ -23,7 +23,6 @@
             SEND
           </button>
         </div>
-        <!-- <p v-if="!errorIsEmpty">{{ error }}</p> -->
       </form>
     </div>
   </div>
@@ -87,7 +86,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .top {
   background-color: #48B9E7;
@@ -132,6 +130,7 @@ export default {
       height: 40px;
       padding: 0 10px;
       outline-color: transparent;
+      border: solid transparent 1px;
       &.error:not(:focus) {
         border: solid red 1px;
       }
@@ -142,12 +141,16 @@ export default {
       padding: 10px 30px;
       color: #fff;
       font-weight: bold;
+      height: 42px;
       &:hover {
         opacity: 0.8;
       }
     }
     span {
       color: #fff;
+      font-size: 14px;
+      text-align: left;
+      padding: 0 10px;
     }
   }
 }
