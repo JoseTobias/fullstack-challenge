@@ -2,12 +2,15 @@
   <div class="container-data">
     <data-table :itens="itens" />
     <chart :itens="itens" :colors="colors" :key="itens.length"/>
+    <labels :itens="itens" :colors="colors"/>
   </div>
 </template>
 
 <script>
 import DataTable from '@/components/DataTable'
 import Chart from '@/components/Chart'
+import Labels from '@/components/Labels'
+
 export default {
   name: 'data-container',
   props: {
@@ -18,7 +21,8 @@ export default {
   },
   components: {
     DataTable,
-    Chart
+    Chart,
+    Labels
   },
   data() {
     return {
@@ -35,7 +39,7 @@ export default {
         return this.randomColor()
       })
       return colors
-    }
+    },
   }
 }
 </script>
@@ -44,5 +48,6 @@ export default {
 .container-data {
   display: flex;
   justify-content: space-between;
+  margin-top: 50px;
 }
 </style>

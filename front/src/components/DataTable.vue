@@ -40,7 +40,6 @@ export default {
 
 <style scoped lang="scss">
 .table {
-  margin-top: 30px;
   width: 50%;
   table {
     border-collapse: collapse;
