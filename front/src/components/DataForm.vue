@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="submit">
-    <input v-model="firstName" type="text" name="firstName" value>
+    <input v-model="firstName" @blur="checkFirstName" type="text" name="firstName" value>
 
-    <input v-model="lastName" type="text" name="lastName" value>
+    <input v-model="lastName" @blur="checkLastName" type="text" name="lastName" value>
 
     <input v-model="participation" @blur="checkParticipation" type="number" name="participation" value>
 
@@ -27,7 +27,9 @@ export default {
   },
   methods: {
     submit() {
-      this.checkFields()
+      if(this.errorIsEmpty) {
+        console.log('submit')
+      }
     },
     number(event) {
       this.participation += event.key.replace(/[^\d]/g, "")
@@ -42,16 +44,22 @@ export default {
         }
       }
     },
-    checkFields() {
+    checkFirstName() {
       if(this.firstName === '') {
         this.$set(this.error, 'firstName', 'participation should be a name')
       }
-
+      else {
+        this.$delete(this.error, 'firstName')
+      }
+    },
+    checkLastName() {
       if(this.lastName === '') {
         this.$set(this.error, 'lastName', 'participation should be a last name')
       }
-      this.checkParticipation()
-    }
+      else {
+        this.$delete(this.error, 'lastName')
+      }
+    },
   },
   computed: {
     errorIsEmpty: function() {
