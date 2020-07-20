@@ -24,7 +24,15 @@ npm run dev
 
 ## Front
 
-Caso queira executar no ambiente de produção:
+1 - Entrar na pasta raiz do front e instalar as dependências com o comando: 
+
+```
+npm install
+```
+
+2 - Executar: 
+
+Caso queira executar no ambiente de produção
 ```
 npm run build
 npm run serve
