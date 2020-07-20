@@ -3,18 +3,45 @@
     <div class="container">
       <form @submit.prevent="submit">
         <div class="first-name">
-          <input :class="{error: error.firstName}" v-model="firstName" @blur="checkFirstName" type="text" name="firstName" placeholder="First name" value>
+
+          <input
+            :class="{error: error.firstName}"
+            v-model="firstName"
+            @blur="checkFirstName"
+            type="text"
+            name="firstName"
+            placeholder="First name"
+            value>
+
           <span v-if="error.firstName">{{ error.firstName }}</span>
         </div>
 
 
         <div class="last-name">
-          <input :class="{error: error.lastName}" v-model="lastName" @blur="checkLastName" type="text" name="lastName" placeholder="Last name" value>
+
+          <input
+            :class="{error: error.lastName}"
+            v-model="lastName"
+            @blur="checkLastName"
+            type="text"
+            name="lastName"
+            placeholder="Last name"
+            value>
+
           <span v-if="error.lastName">{{ error.lastName }}</span>
         </div>
 
         <div class="participation">
-          <input :class="{error: error.participation}" v-model="participation" @blur="checkParticipation" type="number" name="participation" placeholder="Participation" value>
+
+          <input
+          :class="{error: error.participation}"
+          v-model="participation"
+          @blur="checkParticipation"
+          type="number"
+          name="participation"
+          placeholder="Participation"
+          value>
+
           <span v-if="error.participation">{{ error.participation }}</span>
         </div>
 
