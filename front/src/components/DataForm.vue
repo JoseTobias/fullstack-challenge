@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     submit() {
+      this.checkField()
       if(this.errorIsEmpty) {
         this.$emit('submit', {
           firstName: this.firstName,
@@ -48,6 +49,11 @@ export default {
           participation: this.participation
         })
       }
+    },
+    checkField() {
+      this.checkFirstName()
+      this.checkLastName()
+      this.checkParticipation()
     },
     number(event) {
       this.participation += event.key.replace(/[^\d]/g, "")
