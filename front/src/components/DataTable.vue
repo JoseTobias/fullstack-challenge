@@ -40,7 +40,12 @@ export default {
 
 <style scoped lang="scss">
 .table {
-  width: 50%;
+  display: flex;
+  flex: 1;
+  margin-right: 60px;
+  @media (max-width: 991px) {
+    margin-right: 0;
+  }
   table {
     border-collapse: collapse;
     border-color: transparent;
@@ -52,6 +57,9 @@ export default {
       text-align: left;
       &:last-child, &:first-child {
         text-align: center;
+      }
+      @media (max-width: 375px) {
+        padding: 4px 8px;
       }
     }
   }

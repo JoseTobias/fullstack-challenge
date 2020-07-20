@@ -42,8 +42,18 @@ export default {
   methods: {
     submit() {
       if(this.errorIsEmpty) {
-        console.log('submit')
+        this.$emit('submit', {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          participation: this.participation
+        })
+        // this.clear()
       }
+    },
+    clear() {
+      this.firstName = ''
+      this.lastName = ''
+      this.participation = ''
     },
     number(event) {
       this.participation += event.key.replace(/[^\d]/g, "")

@@ -43,5 +43,9 @@ export default {
 
 <style scoped lang="scss">
 .chart {
+  margin-right: 40px;
+  @media (max-width: 575px) {
+    margin-right: 0;
+  }
 }
 </style>

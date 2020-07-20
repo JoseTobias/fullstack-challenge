@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <data-form />
+    <data-form @submit="submit" :key="persons.length"/>
     <div class="app-body container">
       <h2>Data</h2>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      persons: []
+      persons: [],
     }
   },
   methods: {
@@ -29,6 +29,15 @@ export default {
       fetch('http://localhost:3030/')
         .then(resp => resp.json())
         .then(resp => {this.persons = resp})
+    },
+    submit(payload) {
+      fetch('http://localhost:3030/', {
+        method: "POST",
+        headers: { 
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(payload)
+      }).then(() => this.getPersons())
     }
   },
   mounted() {
@@ -38,6 +47,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+* {
+  box-sizing: border-box;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

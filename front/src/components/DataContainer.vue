@@ -1,8 +1,10 @@
 <template>
   <div class="container-data">
     <data-table :itens="itens" />
-    <chart :itens="itens" :colors="colors" :key="itens.length"/>
-    <labels :itens="itens" :colors="colors"/>
+    <div class="chart">
+      <chart :itens="itens" :colors="colors" :key="itens.length"/>
+      <labels :itens="itens" :colors="colors"/>
+    </div>
   </div>
 </template>
 
@@ -48,6 +50,20 @@ export default {
 .container-data {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 50px;
+  @media (max-width: 991px) {
+    flex-direction: column;
+  }
+  .chart {
+    display: flex;
+    @media (max-width: 991px) {
+      margin-top: 30px;
+    }
+    @media (max-width: 575px) {
+      margin-top: 30px;
+      flex-direction: column;
+    }
+  }
 }
 </style>

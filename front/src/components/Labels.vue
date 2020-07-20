@@ -28,6 +28,11 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
+  @media (max-width: 575px) {
+    margin-top: 30px;
+    flex-direction: column;
+  }
   .label {
     display: flex;
     align-items: center;
@@ -36,6 +41,7 @@ export default {
       width: 20px;
       height: 20px;
       margin-right: 10px;
+      border-radius: 20%;
     }
   }
 }
